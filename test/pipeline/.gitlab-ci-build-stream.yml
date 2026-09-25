@@ -1608,7 +1608,7 @@ test_orchestrator:
 
 # ============================  BUILD STREAM  ================================
 # Copies build_stream input files from the pipeline to the target,
-# encrypts build_stream_config_credentials.yml.yml, and runs the playbook.
+# encrypts build_stream_config_credentials.yml, and runs the playbook.
 # ---------------------------------------------------------------------------
 build_stream:
   stage: build_stream
@@ -1691,17 +1691,17 @@ build_stream:
         echo "ERROR: Failed to fetch build_stream credentials from OpenBao"
         exit 1
       fi
-      $SCP_CMD "$CRED_FILE" $TARGET:$INPUT_DIR/build_stream_config_credentials.yml.yml 2>/dev/null
+      $SCP_CMD "$CRED_FILE" $TARGET:$INPUT_DIR/build_stream_config_credentials.yml 2>/dev/null
       rm -f "$CRED_FILE"
       echo "  Credential file copied to target"
 
-    # Step 4: Encrypt build_stream_config_credentials.yml.yml with ansible-vault
-    - echo "Step 4 - Encrypting build_stream_config_credentials.yml.yml"
+    # Step 4: Encrypt build_stream_config_credentials.yml with ansible-vault
+    - echo "Step 4 - Encrypting build_stream_config_credentials.yml"
     - |
       $SSH_CMD $TARGET "
         source $OMNIA_DATA_PATH/activate-omnia.sh
         VAULT_KEY='$INPUT_DIR/.build_stream_config_credentials.yml_key'
-        CRED_FILE='$INPUT_DIR/build_stream_config_credentials.yml.yml'
+        CRED_FILE='$INPUT_DIR/build_stream_config_credentials.yml'
         if [ -f \"\$CRED_FILE\" ]; then
           if head -n1 \"\$CRED_FILE\" | grep -q '\$ANSIBLE_VAULT;'; then
             echo 'Credential file is already encrypted'
@@ -1715,7 +1715,7 @@ build_stream:
             echo 'Credential file encrypted successfully'
           fi
         else
-          echo 'WARNING: build_stream_config_credentials.yml.yml not found — skipping encryption'
+          echo 'WARNING: build_stream_config_credentials.yml not found — skipping encryption'
         fi
       "
 
