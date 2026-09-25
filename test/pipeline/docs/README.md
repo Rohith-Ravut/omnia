@@ -123,6 +123,16 @@ Parent Pipeline (.gitlab-ci.yml)
     ├─→ Child Pipeline 2 (.gitlab-ci-cluster.yml) for cluster2
     │   └─ (same stages as cluster1)
     │
+    ├─→ Build Stream Pipeline (.gitlab-ci-build-stream.yml) [if BUILD_STREAM_ENABLE=true]
+    │   ├─ initialization
+    │   ├─ setup_environment
+    │   ├─ cleanup_<domains>
+    │   ├─ prepare_base (repo_manager + image_build_manager + orchestrator setup)
+    │   ├─ test_<domains> (repo_manager, image_build_manager, orchestrator tests)
+    │   ├─ build_stream deploy
+    │   ├─ test_build_stream
+    │   └─ summary
+    │
     └─→ Utils Pipeline (.gitlab-ci-utils.yml) [if UTILS_ENABLE=true]
         ├─ initialization
         ├─ setup_environment
@@ -165,6 +175,7 @@ No static secrets are stored in GitLab. Each pipeline job gets a short-lived JWT
 - **image_build_manager** — Container image building and registry
 - **orchestrator** — Kubernetes and container orchestration
 - **telemetry** — Monitoring, logging, and observability
+- **build_stream** — Build stream image provisioning and deployment
 
 You can run all domains or select specific ones using regex patterns.
 
@@ -191,6 +202,7 @@ test/pipeline/
 │   └── TROUBLESHOOTING.md           ← Common issues & solutions
 ├── .gitlab-ci.yml                   ← Parent pipeline (multi-cluster)
 ├── .gitlab-ci-cluster.yml           ← Child pipeline (per-cluster stages)
+├── .gitlab-ci-build-stream.yml      ← Build stream pipeline (per-cluster stages)
 ├── .gitlab-ci-utils.yml             ← Utils pipeline (log collection, install_os)
 ├── setup_gitlab_project.py          ← Setup script
 ├── pipeline_config.yml              ← Your configuration (create this)
