@@ -100,6 +100,16 @@ from .coredns_pxeboot_func import (
     check_dns_node_addition_pipeline,
     check_dns_smd_unreachable_cached_resolution,
 )
+from .ipoib_inputs_validate_func import check_ipoib_input_case
+from .ipoib_ipv6_pxeboot_func import (
+    check_ipoib_ipv6_address_state,
+    check_ipoib_ipv6_nm_profile,
+    check_ipoib_ipv6_routes,
+    check_ipoib_ipv6_peer_mesh,
+    check_ipoib_ipv6_smd_records,
+    check_ipoib_slurm_nodeaddr,
+    check_ipoib_custom_slurm_conf,
+)
 from .powervault_pxeboot_func import (
     check_powervault_all_mounts_writable,
     check_powervault_bind_fstab_entries,
@@ -408,6 +418,14 @@ def run_playbook(tag: str | None = None, **kwargs):
 
 __all__ = [
     "TestLogger",
+    "check_ipoib_input_case",
+    "check_ipoib_ipv6_address_state",
+    "check_ipoib_ipv6_nm_profile",
+    "check_ipoib_ipv6_routes",
+    "check_ipoib_ipv6_peer_mesh",
+    "check_ipoib_ipv6_smd_records",
+    "check_ipoib_slurm_nodeaddr",
+    "check_ipoib_custom_slurm_conf",
     "check_additional_cloud_init_bss_common",
     "check_additional_cloud_init_bss_stability",
     "check_additional_cloud_init_bss_per_fg",

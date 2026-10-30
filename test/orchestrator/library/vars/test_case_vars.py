@@ -1595,6 +1595,153 @@ PXEBOOT_TEST_CASES: dict[str, dict[str, str]] = {  # pylint: disable=syntax-erro
         "title": "Verify additional cloud-init integration with additional packages",
         "component": "Additional cloud-init packages integration",
     },
+    "ipoib_ipv6_address_state": {
+        "id": "ORCH_FVT_PXEBOOT_V800",
+        "title": "Verify IPoIB IPv6 address state",
+        "component": "IPoIB IPv6 address state",
+    },
+    "ipoib_ipv6_nm_profile": {
+        "id": "ORCH_FVT_PXEBOOT_V801",
+        "title": "Verify IPoIB NetworkManager profile",
+        "component": "IPoIB NetworkManager profile",
+    },
+    "ipoib_ipv6_routes": {
+        "id": "ORCH_FVT_PXEBOOT_V802",
+        "title": "Verify IPoIB IPv6 on-link routing",
+        "component": "IPoIB IPv6 routing",
+    },
+    "ipoib_ipv6_peer_mesh": {
+        "id": "ORCH_FVT_PXEBOOT_V803",
+        "title": "Verify IPoIB peer reachability",
+        "component": "IPoIB peer reachability",
+    },
+    "ipoib_ipv6_smd_records": {
+        "id": "ORCH_FVT_PXEBOOT_V804",
+        "title": "Verify IPoIB addresses published in SMD",
+        "component": "IPoIB SMD publication",
+    },
+    "ipoib_slurm_nodeaddr": {
+        "id": "ORCH_FVT_PXEBOOT_V805",
+        "title": "Verify Slurm NodeAddr follows the IPoIB allocation",
+        "component": "Slurm IPoIB NodeAddr",
+    },
+    "ipoib_custom_slurm_conf": {
+        "id": "ORCH_FVT_PXEBOOT_V806",
+        "title": "Verify custom slurm.conf nodes respond over IPoIB",
+        "component": "Custom slurm.conf with IPoIB",
+    },
+}
+
+VALIDATE_TEST_CASES: dict[str, dict[str, str]] = {
+    "deploy_validate": {
+        "id": "ORCH_FVT_VALIDATE_E001",
+        "title": "Execute Orchestrator input validation",
+    },
+    "ipoib_input_ipv4_only_ignores_ipv6_subnet": {
+        "id": "ORCH_FVT_VALIDATE_V001",
+        "title": "Accept ipv4-only IPoIB mode with ipv6_subnet configured",
+        "component": "IPoIB input validation",
+    },
+    "ipoib_input_mode_defaults_to_ipv4_only": {
+        "id": "ORCH_FVT_VALIDATE_V002",
+        "title": "Accept omitted ib_addr_mode as ipv4-only",
+        "component": "IPoIB input validation",
+    },
+    "ipoib_input_dual_stack_without_preference": {
+        "id": "ORCH_FVT_VALIDATE_V003",
+        "title": "Accept dual-stack without slurm_preferred_addr_family",
+        "component": "IPoIB input validation",
+    },
+    "ipoib_input_empty_ib_columns_skipped": {
+        "id": "ORCH_FVT_VALIDATE_V004",
+        "title": "Accept a mapping row with empty IB columns",
+        "component": "IPoIB input validation",
+    },
+    "ipoib_input_ipv6_only_without_ipv4": {
+        "id": "ORCH_FVT_VALIDATE_V005",
+        "title": "Accept ipv6-only mapping rows without IB_IPV4",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_ipv6_subnet_malformed": {
+        "id": "ORCH_FVT_VALIDATE_V006",
+        "title": "Reject a malformed ib_network ipv6_subnet",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_ipv6_prefix_length_invalid": {
+        "id": "ORCH_FVT_VALIDATE_V007",
+        "title": "Reject an out-of-range ipv6_netmask_bits",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_dual_stack_missing_ipv6_subnet": {
+        "id": "ORCH_FVT_VALIDATE_V008",
+        "title": "Reject dual-stack without an IPv6 prefix",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_addr_mode_unsupported": {
+        "id": "ORCH_FVT_VALIDATE_V009",
+        "title": "Reject an unsupported ib_addr_mode",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_gateway_input": {
+        "id": "ORCH_FVT_VALIDATE_V010",
+        "title": "Reject an IPoIB gateway input",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_static_route_input": {
+        "id": "ORCH_FVT_VALIDATE_V011",
+        "title": "Reject a static IPoIB route input",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_default_route_input": {
+        "id": "ORCH_FVT_VALIDATE_V012",
+        "title": "Reject an IB default route input",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_pxe_ipv6_unparseable": {
+        "id": "ORCH_FVT_VALIDATE_V013",
+        "title": "Reject an unparseable IB_IPV6",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_pxe_ipv4_unparseable": {
+        "id": "ORCH_FVT_VALIDATE_V014",
+        "title": "Reject an unparseable IB_IPV4",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_pxe_ipv4_in_ipv6_column": {
+        "id": "ORCH_FVT_VALIDATE_V015",
+        "title": "Reject an IPv4 address in IB_IPV6",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_pxe_ipv6_duplicate": {
+        "id": "ORCH_FVT_VALIDATE_V016",
+        "title": "Reject a duplicate IB_IPV6",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_pxe_ipv6_duplicate_expanded": {
+        "id": "ORCH_FVT_VALIDATE_V017",
+        "title": "Reject compressed and expanded IB_IPV6 duplicates",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_pxe_ipv6_without_nic_name": {
+        "id": "ORCH_FVT_VALIDATE_V018",
+        "title": "Reject IB_IPV6 without IB_NIC_NAME",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_pxe_ipv6_outside_prefix": {
+        "id": "ORCH_FVT_VALIDATE_V019",
+        "title": "Reject IB_IPV6 outside the approved prefix",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_pxe_dual_stack_missing_ipv6": {
+        "id": "ORCH_FVT_VALIDATE_V020",
+        "title": "Reject a dual-stack row without IB_IPV6",
+        "component": "IPoIB input validation",
+    },
+    "neg_ipoib_pxe_dual_stack_missing_ipv4": {
+        "id": "ORCH_FVT_VALIDATE_V021",
+        "title": "Reject a dual-stack row without IB_IPV4",
+        "component": "IPoIB input validation",
+    },
 }
 
 CLEANUP_TEST_CASES: dict[str, dict[str, str]] = {
@@ -1689,6 +1836,7 @@ NFT_TEST_CASES: dict[str, dict[str, str]] = {
 
 TEST_CASES: dict[str, dict[str, str]] = {
     **PRECHECK_TEST_CASES,
+    **VALIDATE_TEST_CASES,
     **PREPARE_TEST_CASES,
     **PROVISION_TEST_CASES,
     **PXEBOOT_TEST_CASES,
@@ -1722,6 +1870,10 @@ TEST_ORDER_BLOCKS: dict[str, dict[str, int]] = {
         "storage": 10300,
         "dependencies": 10400,
         "inputs": 10500,
+    },
+    "validate": {
+        "root": 15000,
+        "ipoib_inputs": 15100,
     },
     "prepare": {
         "root": 20000,
@@ -1759,6 +1911,7 @@ TEST_ORDER_BLOCKS: dict[str, dict[str, int]] = {
         "kubernetes_recovery": 42200,
         "slurm_recovery": 42300,
         "slurm_lifecycle": 42400,
+        "ipoib_ipv6": 42500,
     },
     "cleanup": {
         "root": 50000,

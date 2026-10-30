@@ -44,6 +44,12 @@ from .pxeboot_msgs import (
 from .pxeboot_msgs import (
     TEST_LOG_MSGS as PXEBOOT_TEST_LOG_MSGS,
 )
+from .validate_msgs import (
+    TEST_ASSERT_MSGS as VALIDATE_TEST_ASSERT_MSGS,
+)
+from .validate_msgs import (
+    TEST_LOG_MSGS as VALIDATE_TEST_LOG_MSGS,
+)
 
 __all__ = [
     "CLEANUP_TEST_ASSERT_MSGS",
@@ -56,4 +62,6 @@ __all__ = [
     "PROVISION_TEST_LOG_MSGS",
     "PXEBOOT_TEST_ASSERT_MSGS",
     "PXEBOOT_TEST_LOG_MSGS",
+    "VALIDATE_TEST_ASSERT_MSGS",
+    "VALIDATE_TEST_LOG_MSGS",
 ]

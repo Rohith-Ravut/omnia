@@ -26,6 +26,8 @@ from library.messages import PRECHECK_TEST_ASSERT_MSGS as PRECHECK_ASSERT
 from library.messages import PRECHECK_TEST_LOG_MSGS as PRECHECK_LOG
 from library.messages import PXEBOOT_TEST_ASSERT_MSGS as PXEBOOT_ASSERT
 from library.messages import PXEBOOT_TEST_LOG_MSGS as PXEBOOT_LOG
+from library.messages import VALIDATE_TEST_ASSERT_MSGS as VALIDATE_ASSERT
+from library.messages import VALIDATE_TEST_LOG_MSGS as VALIDATE_LOG
 
 
 def _report(test_log, result, fields, component, messages):
@@ -117,4 +119,18 @@ def verify_pxeboot(test_log, case, host, checker):
         fields,
         case["component"],
         (PXEBOOT_LOG, PXEBOOT_ASSERT),
+    )
+
+
+def verify_validate(test_log, case, host, checker, *args):
+    """Execute and enforce one input-validation case result."""
+    result = checker(host, *args)
+    fields = result["details"]["fields"]
+    _skip_if_requested(test_log, case, result, fields, VALIDATE_LOG)
+    _report(
+        test_log,
+        result,
+        fields,
+        case["component"],
+        (VALIDATE_LOG, VALIDATE_ASSERT),
     )

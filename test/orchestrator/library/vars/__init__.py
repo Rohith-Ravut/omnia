@@ -32,6 +32,7 @@ from .test_case_vars import (
     PXEBOOT_TEST_CASES,
     TEST_CASES,
     TEST_ORDER_BLOCKS,
+    VALIDATE_TEST_CASES,
 )
 
 __all__ = [
@@ -50,4 +51,5 @@ __all__ = [
     "PXEBOOT_TEST_CASES",
     "TEST_CASES",
     "TEST_ORDER_BLOCKS",
+    "VALIDATE_TEST_CASES",
 ]

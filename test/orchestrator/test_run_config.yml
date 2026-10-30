@@ -27,6 +27,15 @@ fvt_orchestrator:
     sync_input: false
     sync_output: false
     sync_image_output: false
+  validate:
+    run: false
+    command: "test"
+    suite: ""
+    marker: ""
+    dataset: ""
+    sync_input: false
+    sync_output: false
+    sync_image_output: false
   prepare:
     run: false
     command: "test"

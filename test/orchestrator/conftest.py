@@ -283,6 +283,7 @@ def pytest_configure(config):
         "idempotency": "Repeated lifecycle execution checks",
         "security": "Credential, key, log, and vault protection checks",
         "lifecycle": "Clean-baseline and fresh-install lifecycle checks",
+        "ipoib": "IPoIB IPv4/IPv6 input and post-boot checks (ER-ORCH-005)",
     }
     for name, desc in markers.items():
         config.addinivalue_line("markers", f"{name}: {desc}")

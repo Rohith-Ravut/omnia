@@ -27,6 +27,7 @@ DOMAIN_NAME: str = "orchestrator"
 
 FVT_TAGS: list[str] = [
     "precheck",
+    "validate",
     "prepare",
     "provision",
     "pxeboot",
@@ -74,6 +75,7 @@ MARKERS: list[str] = [
     "idempotency",
     "security",
     "lifecycle",
+    "ipoib",
 ]
 
 # =====================================================================
@@ -87,6 +89,9 @@ SUITES: dict[str, list[str]] = {
         "storage",
         "dependencies",
         "inputs",
+    ],
+    "validate": [
+        "ipoib_inputs",
     ],
     "prepare": [
         "openchami",
@@ -121,6 +126,7 @@ SUITES: dict[str, list[str]] = {
         "kubernetes_recovery",
         "slurm_recovery",
         "slurm_lifecycle",
+        "ipoib_ipv6",
     ],
     "cleanup": [
         "openchami",
